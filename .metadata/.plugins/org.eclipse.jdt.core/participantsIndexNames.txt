@@ -1,5 +1,0 @@
-INDEX VERSION 1.134
-C:\Users\ADMIN\Documents\workspace-spring-tool-suite-4-4.24.0.RELEASE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1688465784.index
-\HelloWorld\src\main\java
-C:\Users\ADMIN\Documents\workspace-spring-tool-suite-4-4.24.0.RELEASE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1625193446.index
-\HelloWorld\src\main\java
