@@ -1,0 +1,14 @@
+package minimal.cookie;
+
+public class Cookie {
+	public String key;
+	public String value;
+	
+	public Cookie(String key, String value) {
+		this.key = key;
+		this.value = value;
+	}
+	
+	
+
+}
