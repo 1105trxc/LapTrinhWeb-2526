@@ -22,56 +22,44 @@ import org.eclipse.tags.shaded.org.apache.bcel.classfile.Constant;
 @SuppressWarnings("serial")
 @WebServlet(urlPatterns = "/login")
 public class LoginController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    public static final String COOKIE_REMEMBER = "username";
-
-    public LoginController() {
-        super();
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
+
         if (session != null && session.getAttribute("account") != null) {
-            resp.sendRedirect(req.getContextPath() + "/waiting");
+            UserModel user = (UserModel) session.getAttribute("account");
+            resp.setContentType("text/html;charset=UTF-8");
+            resp.getWriter().println("<h3>Bạn đã đăng nhập với tài khoản: " + user.getUserName() + "</h3>");
             return;
         }
 
-        // Check cookie
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (COOKIE_REMEMBER.equals(cookie.getName())) {
-                    String username = cookie.getValue();
-                    UserService service = new UserServiceImpl();
-                    UserModel user = service.get(username);
-                    if (user != null) {
-                        session = req.getSession(true);
-                        session.setAttribute("account", user);
-                        resp.sendRedirect(req.getContextPath() + "/waiting");
-                        return;
-                    }
+                if (cookie.getName().equals("username")) {
+                    session = req.getSession(true);
+                    session.setAttribute("username", cookie.getValue());
+                    resp.setContentType("text/html;charset=UTF-8");
+                    resp.getWriter().println("<h3>Bạn đã đăng nhập (cookie) với tài khoản: " + cookie.getValue() + "</h3>");
+                    return;
                 }
             }
         }
 
-        // Nếu chưa login thì forward về trang login.jsp
-        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        String alertMsg = "";
 
-        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
-            alertMsg = "Tài khoản hoặc mật khẩu không được rỗng";
-            req.setAttribute("alert", alertMsg);
+
+        if (username.isEmpty() || password.isEmpty()) {
+            req.setAttribute("alert", "Tài khoản hoặc mật khẩu không được rỗng");
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
             return;
         }
@@ -83,21 +71,11 @@ public class LoginController extends HttpServlet {
             HttpSession session = req.getSession(true);
             session.setAttribute("account", user);
 
-            // Lưu cookie remember-me
-            saveRememberMe(resp, username);
 
-            resp.sendRedirect(req.getContextPath() + "/waiting");
+            resp.getWriter().println("<h3>Đăng nhập thành công! Xin chào: " + user.getUserName() + "</h3>");
         } else {
-            alertMsg = "Tài khoản hoặc mật khẩu không đúng";
-            req.setAttribute("alert", alertMsg);
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            req.setAttribute("alert", "Tài khoản hoặc mật khẩu không đúng");
         }
-    }
-
-    private void saveRememberMe(HttpServletResponse response, String username) {
-        Cookie cookie = new Cookie(COOKIE_REMEMBER, username);
-        cookie.setMaxAge(30 * 60); // 30 phút
-        response.addCookie(cookie);
     }
 }
 
