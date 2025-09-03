@@ -1,10 +1,23 @@
 package k8Edu.model;
 
 import java.io.Serializable;
+import java.security.KeyStore.PrivateKeyEntry;
+import java.sql.Date;
 
 @SuppressWarnings("serial")
 public class UserModel implements Serializable {
 
+	public UserModel(String email, String userName, String fullName, String passWord, String avatar, int roleid, String phone, Date creaeDate) {
+		super();
+		this.email = email;
+		this.userName = userName;
+		this.fullName = fullName;
+		this.passWord = passWord;
+		this.avatar = avatar;
+		this.roleid = roleid;
+		this.phone = phone;
+		this.creaeDate = creaeDate;
+	}
 	public UserModel(int id, String email, String userName, String fullName, String passWord, String avatar, int roleid,
 			String phone) {
 		super();
@@ -21,6 +34,17 @@ public class UserModel implements Serializable {
 		super();
 	}
 
+	public UserModel(String email, String userName, String fullName, String passWord,String phone) {
+		super();
+		this.email = email;
+		this.userName = userName;
+		this.fullName = fullName;
+		this.passWord = passWord;
+		this.phone = phone;
+	}
+
+
+
 
 	/**
 	 *
@@ -35,6 +59,7 @@ public class UserModel implements Serializable {
 	private String avatar;
 	private int roleid;
 	private String phone;
+	private Date creaeDate;
 	public int getId() {
 		return id;
 	}
@@ -87,6 +112,16 @@ public class UserModel implements Serializable {
 	public String toString() {
 		return "UserModel [id=" + id + ", email=" + email + ", userName=" + userName + ", fullName=" + fullName
 				+ ", passWord=" + passWord + ", avatar=" + avatar + ", roleid=" + roleid + ", phone=" + phone + "]";
+	}
+	public Date getCreaeDate() {
+		return creaeDate;
+	}
+	public void setCreaeDate(Date creaeDate) {
+		this.creaeDate = creaeDate;
+	}
+	public Date getCreatedDate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

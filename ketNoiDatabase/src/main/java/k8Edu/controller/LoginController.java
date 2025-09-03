@@ -20,7 +20,7 @@ import org.eclipse.tags.shaded.org.apache.bcel.classfile.Constant;
  */
 
 @SuppressWarnings("serial")
-@WebServlet(urlPatterns = "/login")
+@WebServlet("/login")
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,7 +57,6 @@ public class LoginController extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-
         if (username.isEmpty() || password.isEmpty()) {
             req.setAttribute("alert", "Tài khoản hoặc mật khẩu không được rỗng");
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
@@ -71,12 +70,15 @@ public class LoginController extends HttpServlet {
             HttpSession session = req.getSession(true);
             session.setAttribute("account", user);
 
-
-            resp.getWriter().println("<h3>Đăng nhập thành công! Xin chào: " + user.getUserName() + "</h3>");
+            // Đăng nhập thành công → chuyển sang trang khác (ví dụ home.jsp)
+            resp.sendRedirect(req.getContextPath() + "/home.jsp");
         } else {
+            // Sai tài khoản/mật khẩu → quay về login.jsp và hiển thị alert
             req.setAttribute("alert", "Tài khoản hoặc mật khẩu không đúng");
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
         }
     }
+
 }
 
 
