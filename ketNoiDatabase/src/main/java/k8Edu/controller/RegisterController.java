@@ -43,7 +43,7 @@ public class RegisterController extends HttpServlet {
             }
         }
         // Forward tới trang register.jsp
-        req.getRequestDispatcher("/register.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class RegisterController extends HttpServlet {
         } else {
             alertMsg = "System error!";
             req.setAttribute("alert", alertMsg);
-            req.getRequestDispatcher("/register.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/register.jsp").forward(req, resp);
         }
     }
 }

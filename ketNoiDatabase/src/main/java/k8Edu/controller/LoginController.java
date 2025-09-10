@@ -46,7 +46,7 @@ public class LoginController extends HttpServlet {
             }
         }
 
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
 
         if (username.isEmpty() || password.isEmpty()) {
             req.setAttribute("alert", "Tài khoản hoặc mật khẩu không được rỗng");
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
             return;
         }
 
@@ -75,7 +75,7 @@ public class LoginController extends HttpServlet {
         } else {
             // Sai tài khoản/mật khẩu → quay về login.jsp và hiển thị alert
             req.setAttribute("alert", "Tài khoản hoặc mật khẩu không đúng");
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
         }
     }
 

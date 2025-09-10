@@ -9,13 +9,14 @@
 	<packaging>war</packaging>
 
 	<properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+		<!--
+		https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
@@ -30,14 +31,16 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+		<!--
+		https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<version>13.2.0.jre11</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
+		<!--
+		https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
 		<dependency>
 			<groupId>jakarta.servlet.jsp.jstl</groupId>
 			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -49,7 +52,8 @@
 			<artifactId>jakarta.el-api</artifactId>
 			<version>6.0.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
+		<!--
+		https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
@@ -62,7 +66,8 @@
 			<version>0.4</version>
 		</dependency>
 
-		<!-- SỬA ĐỔI TẠI ĐÂY: Sử dụng commons-fileupload 1.5 để tương thích Jakarta EE và giữ nguyên package name -->
+		<!-- SỬA ĐỔI TẠI ĐÂY: Sử dụng commons-fileupload 1.5 để tương thích
+		Jakarta EE và giữ nguyên package name -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -72,6 +77,27 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.16.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.6.28.Final</version>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.2.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.2.1</version>
 		</dependency>
 
 	</dependencies>
@@ -93,9 +119,11 @@
 					<artifactId>maven-war-plugin</artifactId>
 					<version>3.4.0</version>
 					<configuration>
-						<!-- Đảm bảo webappDirectory trỏ đến thư mục chứa web content,
+						<!-- Đảm bảo webappDirectory trỏ đến thư mục chứa web
+						content,
 						    mặc định thường là src/main/webapp nếu bạn không đặt gì -->
-						<!-- <webappDirectory>${project.basedir}/src/main/webapp</webappDirectory> -->
+						<!--
+						<webappDirectory>${project.basedir}/src/main/webapp</webappDirectory> -->
 						<!-- Nếu bạn để trống, Maven sẽ dùng mặc định -->
 					</configuration>
 				</plugin>
